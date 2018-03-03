@@ -1,9 +1,7 @@
 let linear = ((domainMin, domainMax), (rangeMin, rangeMax), value) => {
   let domainSpan = domainMax -. domainMin;
-  let rangeMaxF = rangeMax;
-  let rangeMinF = rangeMin;
-  let rangeSpan = rangeMaxF -. rangeMinF;
+  let rangeSpan = rangeMax -. rangeMin;
   let slope = rangeSpan /. domainSpan;
-  let intercept = rangeMaxF -. slope *. domainMax;
+  let intercept = rangeMax -. slope *. domainMax;
   slope *. value +. intercept;
 };

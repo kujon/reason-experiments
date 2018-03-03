@@ -61,11 +61,26 @@ let make =
       },
       ticks
     );
+  let labelElements =
+    List.map(
+      t => {
+        let (x, y) =
+          switch orientation {
+          | X => (scale(t), 5.0)
+          | Y => ((-5.0), scale(t))
+          };
+        <Label x y key=(t |> string_of_float)>
+          ...(t |> string_of_float |> ReasonReact.stringToElement)
+        </Label>;
+      },
+      ticks
+    );
   {
     ...component,
     render: _self =>
       <g transform>
         <g> (tickElements |> Array.of_list |> ReasonReact.arrayToElement) </g>
+        <g> (labelElements |> Array.of_list |> ReasonReact.arrayToElement) </g>
         <Rectangle x=0.0 y=0.0 width height fill />
       </g>
   };
