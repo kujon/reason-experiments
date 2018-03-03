@@ -35,13 +35,13 @@ let make =
     switch orientation {
     | X => (
         SVGUtils.translateTransform(0, position |> referenceScale),
-        string_of_int(length),
-        string_of_int(thickness)
+        length |> string_of_int,
+        thickness |> string_of_int
       )
     | Y => (
         SVGUtils.translateTransform(position |> referenceScale, 0),
-        string_of_int(thickness),
-        string_of_int(length)
+        thickness |> string_of_int,
+        length |> string_of_int
       )
     };
   let ticks = calculateTicks(domain, tickCount);
