@@ -29,19 +29,20 @@ let make =
       ~scale,
       ~referenceScale,
       ~position,
+      ~fill="black",
       _children
     ) => {
   let (transform, width, height) =
     switch orientation {
     | X => (
         SVGUtils.translateTransform(0, position |> referenceScale),
-        length |> string_of_int,
-        thickness |> string_of_int
+        length,
+        thickness
       )
     | Y => (
         SVGUtils.translateTransform(position |> referenceScale, 0),
-        thickness |> string_of_int,
-        length |> string_of_int
+        thickness,
+        length
       )
     };
   let ticks = calculateTicks(domain, tickCount);
@@ -63,7 +64,7 @@ let make =
               thickness
             )
           };
-        <Rectangle x y width height key=(t |> string_of_float) />;
+        <Rectangle x y width height key=(t |> string_of_float) fill />;
       },
       ticks
     );
@@ -72,7 +73,7 @@ let make =
     render: _self =>
       <g transform>
         <g> (tickElements |> Array.of_list |> ReasonReact.arrayToElement) </g>
-        <rect width height />
+        <Rectangle x=0 y=0 width height fill />
       </g>
   };
 };

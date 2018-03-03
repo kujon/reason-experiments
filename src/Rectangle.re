@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("Rectangle");
 
-let make = (~x, ~y, ~width, ~height, _children) => {
+let make = (~x, ~y, ~width, ~height, ~fill, _children) => {
   let transform = SVGUtils.translateTransform(x, y);
   {
     ...component,
@@ -9,6 +9,7 @@ let make = (~x, ~y, ~width, ~height, _children) => {
         width=(width |> string_of_int)
         height=(height |> string_of_int)
         transform
+        fill
       />
   };
 };
