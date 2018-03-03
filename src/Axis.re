@@ -20,20 +20,20 @@ let make =
       ~orthogonalScale,
       ~position=0.0,
       ~tickCount=5,
-      ~tickSize=6,
-      ~thickness=1,
+      ~tickSize=6.0,
+      ~thickness=1.0,
       ~fill="#777DA7",
       _children
     ) => {
   let (transform, width, height) =
     switch orientation {
     | X => (
-        SVGUtils.translateTransform(0, position |> orthogonalScale),
+        SVGUtils.translateTransform(0.0, position |> orthogonalScale),
         length,
         thickness
       )
     | Y => (
-        SVGUtils.translateTransform(position |> orthogonalScale, 0),
+        SVGUtils.translateTransform(position |> orthogonalScale, 0.0),
         thickness,
         length
       )
@@ -45,14 +45,14 @@ let make =
         let (x, y, width, height) =
           switch orientation {
           | X => (
-              scale(t) - thickness / 2,
-              - tickSize / 2,
+              scale(t) -. thickness /. 2.0,
+              -. tickSize /. 2.0,
               thickness,
               tickSize
             )
           | Y => (
-              - tickSize / 2,
-              scale(t) - thickness / 2,
+              -. tickSize /. 2.0,
+              scale(t) -. thickness /. 2.0,
               tickSize,
               thickness
             )
@@ -66,7 +66,7 @@ let make =
     render: _self =>
       <g transform>
         <g> (tickElements |> Array.of_list |> ReasonReact.arrayToElement) </g>
-        <Rectangle x=0 y=0 width height fill />
+        <Rectangle x=0.0 y=0.0 width height fill />
       </g>
   };
 };

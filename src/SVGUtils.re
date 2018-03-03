@@ -1,10 +1,21 @@
+let floatToNumericValue = value =>
+  value |> MathUtils.round |> int_of_float |> string_of_int;
+
 let translateTransform = (x, y) =>
-  "translate(" ++ (x |> string_of_int) ++ ", " ++ (y |> string_of_int) ++ ")";
+  "translate("
+  ++ (x |> floatToNumericValue)
+  ++ ", "
+  ++ (y |> floatToNumericValue)
+  ++ ")";
 
 let lineToSequence =
   List.fold_left(
     (memo, (x, y)) =>
-      memo ++ "L" ++ (x |> string_of_int) ++ ", " ++ (y |> string_of_int),
+      memo
+      ++ "L"
+      ++ (x |> floatToNumericValue)
+      ++ ", "
+      ++ (y |> floatToNumericValue),
     ""
   );
 
@@ -13,9 +24,9 @@ let linePath = data =>
   | [(startX, startY), ...xs] =>
     Some(
       "M"
-      ++ (startX |> string_of_int)
+      ++ (startX |> floatToNumericValue)
       ++ ","
-      ++ (startY |> string_of_int)
+      ++ (startY |> floatToNumericValue)
       ++ (xs |> lineToSequence)
     )
   | _ => None

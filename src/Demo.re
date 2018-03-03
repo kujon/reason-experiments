@@ -23,9 +23,9 @@ let make = _children => {
   render: self =>
     <div>
       <Chart
-        width=400
-        height=400
-        padding={top: 10, right: 10, bottom: 10, left: 10}
+        width=400.0
+        height=400.0
+        padding={top: 10.0, right: 10.0, bottom: 10.0, left: 10.0}
         data=self.state.data>
         ...(
              (

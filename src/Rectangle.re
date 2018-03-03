@@ -6,8 +6,8 @@ let make = (~x, ~y, ~width, ~height, ~fill, _children) => {
     ...component,
     render: _self =>
       <rect
-        width=(width |> string_of_int)
-        height=(height |> string_of_int)
+        width=(width |> SVGUtils.floatToNumericValue)
+        height=(height |> SVGUtils.floatToNumericValue)
         transform
         fill
       />
