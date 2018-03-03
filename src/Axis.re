@@ -15,25 +15,25 @@ let make =
     (
       ~orientation,
       ~domain,
-      ~tickCount,
       ~length,
-      ~tickSize,
-      ~thickness,
       ~scale,
-      ~referenceScale,
-      ~position,
+      ~orthogonalScale,
+      ~position=0.0,
+      ~tickCount=5,
+      ~tickSize=6,
+      ~thickness=1,
       ~fill="black",
       _children
     ) => {
   let (transform, width, height) =
     switch orientation {
     | X => (
-        SVGUtils.translateTransform(0, position |> referenceScale),
+        SVGUtils.translateTransform(0, position |> orthogonalScale),
         length,
         thickness
       )
     | Y => (
-        SVGUtils.translateTransform(position |> referenceScale, 0),
+        SVGUtils.translateTransform(position |> orthogonalScale, 0),
         thickness,
         length
       )

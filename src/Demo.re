@@ -42,25 +42,17 @@ let make = _children => {
                    key="xAxis"
                    orientation=X
                    domain=xDomain
-                   tickCount=4
                    length=canvasWidth
-                   tickSize=6
-                   thickness=1
-                   position=0.0
                    scale=xScale
-                   referenceScale=yScale
+                   orthogonalScale=yScale
                  />
                  <Axis
                    key="yAxis"
                    orientation=Y
                    domain=yDomain
-                   tickCount=5
                    length=canvasHeight
-                   tickSize=6
-                   thickness=1
-                   position=0.0
                    scale=yScale
-                   referenceScale=xScale
+                   orthogonalScale=xScale
                  />
                  <LineSeries key="lineSeries" data xScale yScale />
                </>
