@@ -26,8 +26,46 @@ let make = _children => {
         width=400
         height=400
         padding={top: 10, right: 10, bottom: 10, left: 10}
-        data=self.state.data
-      />
+        data=self.state.data>
+        ...(
+             (
+               ~xScale,
+               ~yScale,
+               ~xDomain,
+               ~yDomain,
+               ~canvasWidth,
+               ~canvasHeight,
+               ~data
+             ) =>
+               <>
+                 <Axis
+                   key="xAxis"
+                   orientation=X
+                   domain=xDomain
+                   tickCount=4
+                   length=canvasWidth
+                   tickSize=6
+                   thickness=1
+                   position=0.0
+                   scale=xScale
+                   referenceScale=yScale
+                 />
+                 <Axis
+                   key="yAxis"
+                   orientation=Y
+                   domain=yDomain
+                   tickCount=5
+                   length=canvasHeight
+                   tickSize=6
+                   thickness=1
+                   position=0.0
+                   scale=yScale
+                   referenceScale=xScale
+                 />
+                 <LineSeries key="lineSeries" data xScale yScale />
+               </>
+           )
+      </Chart>
       <button onClick=(_event => self.send(Randomise))>
         (ReasonReact.stringToElement("Randomise data"))
       </button>

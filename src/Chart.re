@@ -26,7 +26,7 @@ let make =
       ~data,
       ~xScale=ScaleUtils.linear,
       ~yScale=ScaleUtils.linear,
-      _children
+      children
     ) => {
   let (canvasWidth, canvasHeight) = (
     width - padding.left - padding.right,
@@ -42,29 +42,19 @@ let make =
     render: _self =>
       <svg width=(width |> string_of_int) height=(height |> string_of_int)>
         <g transform=(SVGUtils.translateTransform(padding.left, padding.top))>
-          <Axis
-            orientation=X
-            domain=xDomain
-            tickCount=4
-            length=canvasWidth
-            tickSize=6
-            thickness=1
-            position=0.0
-            scale=xScale
-            referenceScale=yScale
-          />
-          <Axis
-            orientation=Y
-            domain=yDomain
-            tickCount=5
-            length=canvasHeight
-            tickSize=6
-            thickness=1
-            position=0.0
-            scale=yScale
-            referenceScale=xScale
-          />
-          <LineSeries data xScale yScale />
+          (
+            children(
+              ~xScale,
+              ~yScale,
+              ~xDomain,
+              ~yDomain,
+              ~canvasWidth,
+              ~canvasHeight,
+              ~data
+            )
+            |> Array.of_list
+            |> ReasonReact.arrayToElement
+          )
         </g>
       </svg>
   };
