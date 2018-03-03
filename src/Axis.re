@@ -6,16 +6,9 @@ type orientation =
 
 let domainWidth = ((min, max)) => max -. min;
 
-let rec range = (min, max, step) =>
-  if (min > max) {
-    [];
-  } else {
-    [min, ...range(min +. step, max, step)];
-  };
-
 let calculateTicks = ((min, max), tickCount) => {
   let tickGap = domainWidth((min, max)) /. float_of_int(tickCount);
-  range(min, max, tickGap);
+  FunctionalUtils.range(min, max, tickGap);
 };
 
 let make =
