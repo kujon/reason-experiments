@@ -10,8 +10,8 @@ let component = ReasonReact.reducerComponent("Demo");
 Random.init(0);
 
 let createRandomData = () =>
-  FunctionalUtils.range(-10.0, 10.0, 1.0)
-  |> List.map(x => (x, Random.float(20.0) -. 10.));
+  FunctionalUtils.range(-1000.0, 1000.0, 1.0)
+  |> List.map(x => (x, Random.float(2000.0) -. 500.));
 
 let make = _children => {
   ...component,
@@ -23,8 +23,8 @@ let make = _children => {
   render: self =>
     <div>
       <Chart
-        width=400.0
-        height=400.0
+        width=1400.0
+        height=600.0
         padding={top: 10.0, right: 10.0, bottom: 10.0, left: 10.0}
         data=self.state.data>
         ...(
@@ -38,6 +38,7 @@ let make = _children => {
                ~data
              ) =>
                <>
+                 <LineSeries key="lineSeries" data xScale yScale />
                  <Axis
                    key="xAxis"
                    orientation=X
@@ -54,7 +55,6 @@ let make = _children => {
                    scale=yScale
                    orthogonalScale=xScale
                  />
-                 <LineSeries key="lineSeries" data xScale yScale />
                </>
            )
       </Chart>
