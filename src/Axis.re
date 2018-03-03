@@ -22,7 +22,7 @@ let make =
       ~tickCount=5,
       ~tickSize=6,
       ~thickness=1,
-      ~fill="black",
+      ~fill="#777DA7",
       _children
     ) => {
   let (transform, width, height) =
