@@ -6,7 +6,7 @@ let make = (~data, _children) => {
     ...component,
     render: _self =>
       switch p {
-      | Some(d) => <path d />
+      | Some(d) => <path d fill="none" stroke="black" />
       | None => ReasonReact.nullElement
       }
   };

@@ -64,6 +64,7 @@ let make =
             scale=yScale
             referenceScale=xScale
           />
+          <LineSeries data xScale yScale />
         </g>
       </svg>
   };
